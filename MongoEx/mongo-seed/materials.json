@@ -1,0 +1,4 @@
+[
+{"_id":{"$oid":"5b1f682906868b5e54fdb16f"},"materialnumber":"Supplier_01","description":"Suppliers description goes here","manufactor_part_number":"maf_part_011","manufactor_name":"manufacture 1","type":"material","partProperties":[{"_id":{"$oid":"5b432ade27234769406f0d3b"},"propertyName":"overview","propertyValue":"overview"}]},
+{"_id":{"$oid":"5b1f8df98fe03972045920ad"},"materialnumber":"Supplier_02","description":"Supplier 2 description goes here","manufactor_part_number":"maf_part_02","manufactor_name":"manufacture 12","type":"material"}
+]

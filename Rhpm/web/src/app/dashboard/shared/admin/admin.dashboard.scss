@@ -1,0 +1,46 @@
+@import "../../../../styles/partials/variable.scss";
+
+.card-main{
+    .pull-left{
+        .fa{
+            color:$white-color;
+            font-size:4.8rem;
+        }
+    }
+    .pull-right{
+        h4{
+            color:$white-color;
+            font-size: 20px;
+            margin:$no-margin;
+            padding-bottom: 8px;
+        }
+        p{
+            margin:$no-margin;
+            color:$white-color;
+            text-transform: capitalize;
+            
+        }
+        text-align:right;
+    }
+    width:100%;
+    float: left;    
+    overflow: hidden;
+    padding:$pad15;
+    box-shadow:$box-shadow;
+    transition: box-shadow 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+    margin-bottom:20px;
+}
+
+.gredient-one{ background: $crimson-gredient;}
+.gredient-two{ background: $purple-gredient;}
+.gredient-three{ background: $green-gredient;}
+.gredient-four{ background: $white-gredient;}
+
+.g-map{
+    box-shadow: $box-shadow;
+    padding: $pad10;
+    background: $white-color;
+    margin-bottom:20px;
+    
+}
+

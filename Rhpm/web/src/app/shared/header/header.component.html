@@ -1,0 +1,88 @@
+<div class="row">
+    <div class="col-xs-2 col-sm-6 col-md-6">
+        <span class="logo">
+            <a href="javascript:void(0)" class="img-responsive">
+                <img src="../assets/images/evry-logo.png" alt="Evry" title="Evry">
+            </a>
+        </span>
+        <a (click)="toggleLeft()" class="pull-left toggle-icon-left">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </a>
+
+    </div>
+    <div class="col-xs-10 col-sm-6 col-md-6">
+        <nav class="pull-right top-nav navbar-right">
+            <ul>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu search-box">
+                        <li>
+                            <div class="input-group">
+                                <input type="text" class="  search-query form-control" placeholder="Search" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="button">
+                                        <span class=" glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-bell" aria-hidden="true"></i>
+                        <span class="caret"></span>
+                        <span class="top-badge">5</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="javascript:void(0)">Information 01</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">Information 02</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">Information 03</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">Information 04</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">Information 05</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">Information 06</a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a href="javascript:void(0)">See all Notification</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ name }}
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a routerLink="../changepassword">Change Password</a>
+                        </li>
+                        <li>
+                            <a routerLink="../editprofile">Edit Profile</a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a (click)="logout()">logout</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="name-img">{{intialOfFirstName}}{{intialOfLastName}}</span>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="content-wrapper">
+    <div class="panel panel-default no-radius">
+        <div class="panelheader panel-heading no-radius">{{ 'OPENING.DETAILS' | translate }}</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <label>{{ 'OPENING.TITLE' | translate }}</label>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <output name="openingTitle">{{ openingModel.title }}</output>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <label>{{ 'OPENING.DESCRIPTION' | translate }}</label>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <output name="description">{{ openingModel.description }}</output>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <label>{{ 'OPENING.PRIMARYSKILLS' | translate }}</label>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <output name="primarySkillTypes">{{ openingModel.primarySkills }}</output>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <label>{{ 'OPENING.SECONDARYSKILLS' | translate }}</label>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <output name="secondaySkillTypes">{{ openingModel.secondarySkills }}</output>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-approvalhistory *ngIf="openingModel.openingId != null" [entityId]="openingModel.openingId"></app-approvalhistory>
+</div>

@@ -1,0 +1,617 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SubQuip.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:SubQuip.WebApi.Controllers.BillOfMaterialsController">
+            <summary>
+            Bill of materials controller.
+            </summary>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.BillOfMaterialsController.#ctor(SubQuip.Business.Interfaces.IBillOfMaterialsManagerService,Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Initializes a new instance of the BillOfMaterialsController
+            </summary>
+            <param name="billOfMaterialsManager">Bill of materials manager.</param>
+            <param name="configuration">Configuration.</param>
+            <param name="hostingEnvironment">Hosting environment.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.BillOfMaterialsController.BillOfMaterialsForUser(SubQuip.Common.CommonData.SearchSortModel,System.String)">
+            <summary>
+            Search for a Bill Of Material (BOM) owned by a user.
+            </summary>
+            <returns>The of materials for that spesific user.</returns>
+            <param name="search">Search Model.</param>
+            <param name="userid">Spesific Userid.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.BillOfMaterialsController.Details(System.String)">
+            <summary>
+            Get a spesific Bill Of Material (BOM) by its identifier.
+            </summary>
+            <returns>The spesific material.</returns>
+            <param name="id">Identifier of the material.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.BillOfMaterialsController.BomsForTemplate(System.String)">
+            <summary>
+            Get Boms of Specific Template.
+            </summary>
+            <param name="templateId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.BillOfMaterialsController.BomTemplates(SubQuip.Common.CommonData.SearchSortModel)">
+            <summary>
+            Get all Bom Templates.
+            </summary>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.BillOfMaterialsController.Create">
+            <summary>
+            Create a Bill Of Material (BOM) / BOM Template.
+            </summary>
+            <returns>The created Bom Of Material / BOM Template.</returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.BillOfMaterialsController.Update">
+            <summary>
+            Update a Bill Of Material (BOM)
+            </summary>
+            <returns>The update.</returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.BillOfMaterialsController.Delete(System.String)">
+            <summary>
+            Delete a Bill Of Material (BOM) by its identifier.
+            </summary>
+            <returns>The deleted Bill Of Material.</returns>
+            <param name="id">Identifier of the Bill of Material (BOM).</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.BillOfMaterialsController.DeleteAll(SubQuip.ViewModel.User.UserLoginViewModel)">
+            <summary>
+            Delete All Bill Of Material (BOM). 
+            </summary>
+            <param name="loginModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.BillOfMaterialsController.AddCommentToBOM(SubQuip.ViewModel.BillOfMaterial.BomCommentViewModel)">
+            <summary>
+            Adds comment to existing BOM
+            </summary>
+            <returns>The created comment on Bom</returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.BillOfMaterialsController.AddOptionToBOM(SubQuip.ViewModel.BillOfMaterial.BomOptionViewModel)">
+            <summary>
+            Add Option to BOM.
+            </summary>
+            <param name="bomOptionViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.BillOfMaterialsController.CommentsForBom(System.String)">
+            <summary>
+            Retrieve comments related to BOM
+            </summary>
+            <returns>Comments for specific BOM.</returns>
+            <param name="bomId">Specific BomId.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.BillOfMaterialsController.CreateBOMRequest">
+            <summary>
+            Create and submit a new request.
+            </summary>
+            <returns>Result model.</returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.BillOfMaterialsController.AddItemToBom(SubQuip.ViewModel.BillOfMaterial.AddItemToBom)">
+            <summary>
+            Add Equipment/Material To BOM.
+            </summary>
+            <param name="addItemToBom"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.BillOfMaterialsController.GetAddedItemsOfBom(System.String)">
+            <summary>
+            Get Added Items of BOM.
+            </summary>
+            <param name="bomId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.BillOfMaterialsController.PrepareEmailOptions(SubQuip.ViewModel.Request.BomRequestViewModel)">
+            <summary>
+            Prepare Email options for various system requests
+            </summary>
+            <param name="requestViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.BillOfMaterialsController.PrepareHtmlBody(SubQuip.ViewModel.Request.BomRequestViewModel)">
+            <summary>
+            Prepare HTML Msg Body
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SubQuip.WebApi.Controllers.ContactUsController">
+            <summary>
+            Contact us controller, to handle the "contact us" form
+            </summary>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.ContactUsController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SubQuip.WebApi.Controllers.ContactUsController"/> class.
+            </summary>
+            <param name="configuration">Configuration.</param>
+            <param name="hostingEnvironment">Hosting environment.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.ContactUsController.Create(SubQuip.ViewModel.ContactUs.ContactUsViewModel)">
+            <summary>
+            Used for sending emails directly to Subquip.
+            </summary>
+            <returns>Result model</returns>
+            <param name="contactUsViewModel">Data needed to send a contact us email</param>
+        </member>
+        <member name="T:SubQuip.WebApi.Controllers.EquipmentController">
+            <summary>
+            Equipment controller.
+            </summary>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.EquipmentController.#ctor(SubQuip.Business.Interfaces.IEquipmentManagerService,Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Initializes a new instance of the EquipmentController
+            </summary>
+            <param name="equipmentManager">Equipment manager.</param>
+            <param name="configuration">Configuration.</param>
+            <param name="hostingEnvironment">Hosting environment.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.EquipmentController.Equipments(SubQuip.Common.CommonData.SearchSortModel)">
+            <summary>
+            Search for equipments.
+            </summary>
+            <returns>The equipments found by the search.</returns>
+            <param name="search">Search parameters to find equipments.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.EquipmentController.Details(System.String)">
+            <summary>
+            Get a specific equipment by its identifier.
+            </summary>
+            <returns>The spesific equipment.</returns>
+            <param name="id">Identifier of the equipment</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.EquipmentController.Create(SubQuip.ViewModel.Equipment.EquipmentViewModel)">
+            <summary>
+            Create a new equipment.
+            </summary>
+            <returns>The created equipment.</returns>
+            <param name="equipmentViewModel">Equipment view model.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.EquipmentController.InsertEquipmentDocument">
+            <summary>
+            Uploads the equipment document.
+            </summary>
+            <returns>The equipment document.</returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.EquipmentController.Update(SubQuip.ViewModel.Equipment.EquipmentViewModel)">
+            <summary>
+            Updated a spesific equipment.
+            </summary>
+            <returns>The updated equipment.</returns>
+            <param name="equipmentViewModel">Equipment view model.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.EquipmentController.ManageEquipmentPartProperties(SubQuip.ViewModel.PartProperties.PartPropertyViewModel)">
+            <summary>
+            Manages the equipment part properties.
+            </summary>
+            <returns>The equipment part properties.</returns>
+            <param name="partPropertyViewModel">Part property view model.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.EquipmentController.ManageEquipmentTechSpecs(SubQuip.ViewModel.TechSpecs.TechSpecsViewModel)">
+            <summary>
+            Manages the equipment tech specs.
+            </summary>
+            <returns>The equipment tech specs.</returns>
+            <param name="techSpecsViewModel">Tech specs view model.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.EquipmentController.Delete(System.String)">
+            <summary>
+            Delete the equipment.
+            </summary>
+            <returns>The deleted equipment.</returns>
+            <param name="id">Identifier of the equipment.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.EquipmentController.DeleteAll(SubQuip.ViewModel.User.UserLoginViewModel)">
+            <summary>
+            Delete All Equipments.
+            </summary>
+            <param name="loginModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.EquipmentController.RequestEquipment">
+            <summary>
+            Insert Equipment Request
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.EquipmentController.PrepareEmailOptions(SubQuip.ViewModel.Request.EquipmentRequestViewModel)">
+            <summary>
+            Prepare Email options for equipment requests
+            </summary>
+            <param name="requestViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SubQuip.WebApi.Controllers.FileController">
+            <summary>
+            File controller for handeling file upload
+            </summary>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.FileController.#ctor(SubQuip.Business.Interfaces.IFileManagerService,SubQuip.Business.Interfaces.IMaterialManagerService)">
+            <summary>
+             Initializes a new instance of File controller
+            </summary>
+            <param name="fileManager"></param>
+            <param name="materialManagerService"></param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.FileController.UploadData(System.Collections.Generic.List{Microsoft.AspNetCore.Http.IFormFile})">
+            <summary>
+            CSV file upload.
+            </summary>
+            <returns>The imported CSV data.</returns>
+            <param name="uploadedFiles"></param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.FileController.Detail(System.String)">
+            <summary>
+            Get File Details By Its Identifier
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.FileController.DeleteAll(SubQuip.ViewModel.User.UserLoginViewModel)">
+            <summary>
+            Delete All Files.
+            </summary>
+            <param name="loginModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.FileController.ImportMaterialData(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Import material data
+            </summary>
+            <param name="uploadFile"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SubQuip.WebApi.Controllers.HealthController">
+            <summary>
+            Healthcheck enpoint should be useable as a health and liveness check
+            </summary>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.HealthController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Initializes a new instance
+            </summary>
+            <param name="configuration">Configuration.</param>
+            <param name="hostingEnvironment">Hosting environment.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.HealthController.Index">
+            <summary>
+            This method will just to check wheather the API is up or not
+            (without authentication).
+            </summary>
+            <returns>Result model with status</returns>
+        </member>
+        <member name="T:SubQuip.WebApi.Controllers.LocationController">
+            <summary>
+            Location Controller.
+            </summary>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.LocationController.#ctor(SubQuip.Business.Interfaces.ILocationManagerService)">
+            <summary>
+            Initializes a new instance of the LocationController.
+            </summary>
+            <param name="locationManager"></param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.LocationController.Locations(SubQuip.Common.CommonData.SearchSortModel)">
+            <summary>
+            Get all Locations.
+            </summary>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SubQuip.WebApi.Controllers.LoginController">
+            <summary>
+            Login controller.
+            </summary>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.LoginController.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SubQuip.WebApi.Controllers.LoginController"/> class.
+            </summary>
+            <param name="configuration">Configuration.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.LoginController.LoginUser(SubQuip.ViewModel.User.UserLoginViewModel)">
+            <summary>
+            Logins the user.
+            </summary>
+            <returns>Access token for the logged in user</returns>
+            <param name="loginViewModel">Login view model.</param>
+        </member>
+        <member name="T:SubQuip.WebApi.Controllers.MaterialController">
+            <summary>
+            Material controller.
+            </summary>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.MaterialController.#ctor(SubQuip.Business.Interfaces.IMaterialManagerService,Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Initializes a new instance of Material controller
+            </summary>
+            <param name="materialManager">Material manager.</param>
+            <param name="configuration">Configuration.</param>
+            <param name="hostingEnvironment">Hosting environment.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.MaterialController.Materials(SubQuip.Common.CommonData.SearchSortModel)">
+            <summary>
+            Search for materials.
+            </summary>
+            <returns>List of found materials.</returns>
+            <param name="search">Search parameters.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.MaterialController.Details(System.String)">
+            <summary>
+            Get a spesific material.
+            </summary>
+            <returns>Record of that material.</returns>
+            <param name="id">Identifier of the material.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.MaterialController.EquipmentsForMaterial(System.String)">
+            <summary>
+            Get Equipments For Material
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.MaterialController.Create(SubQuip.ViewModel.Material.MaterialViewModel)">
+            <summary>
+            Create a new material.
+            </summary>
+            <returns>The created material.</returns>
+            <param name="materialViewModel">Material view model.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.MaterialController.InsertMaterialDocument">
+            <summary>
+            Upload the material document.
+            </summary>
+            <returns>The material document.</returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.MaterialController.Update(SubQuip.ViewModel.Material.MaterialViewModel)">
+            <summary>
+            Update a material.
+            </summary>
+            <returns>The updated material model.</returns>
+            <param name="materialViewModel">Material view model.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.MaterialController.Delete(System.String)">
+            <summary>
+            Delete a spesific material by its identifier.
+            </summary>
+            <param name="id">Identifier of the material.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.MaterialController.ManageMaterialPartProperties(SubQuip.ViewModel.PartProperties.PartPropertyViewModel)">
+            <summary>
+            Manages the material part properties.
+            </summary>
+            <returns>The material part properties.</returns>
+            <param name="partPropertyViewModel">Part property view model.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.MaterialController.ManageMaterialTechSpecs(SubQuip.ViewModel.TechSpecs.TechSpecsViewModel)">
+            <summary>
+            Manages the material tech specs.
+            </summary>
+            <returns>The material tech specs.</returns>
+            <param name="techSpecsViewModel">Tech specs view model.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.MaterialController.DeleteAll(SubQuip.ViewModel.User.UserLoginViewModel)">
+            <summary>
+            Delete All Materials.
+            </summary>
+            <param name="loginModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.MaterialController.RequestMaterial">
+            <summary>
+            Insert Material Request
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.MaterialController.PrepareEmailOptions(SubQuip.ViewModel.Request.MaterialRequestViewModel)">
+            <summary>
+            Prepare Email options for material requests
+            </summary>
+            <param name="requestViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SubQuip.WebApi.Controllers.PartnerController">
+            <summary>
+            Partner controller, to handle the different partners in SubQuip
+            </summary>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.PartnerController.#ctor(SubQuip.Business.Interfaces.IPartnerManagerService)">
+            <summary>
+            Initializes a new instance of the PartnerController
+            </summary>
+            <param name="partnerManager"></param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.PartnerController.Partners(SubQuip.Common.CommonData.SearchSortModel)">
+            <summary>
+            Get a list of all partners registered in SubQuip.
+            </summary>
+            <returns>List of partners</returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.PartnerController.Details(System.String)">
+            <summary>
+            Get a specific partner by its identifier.
+            </summary>
+            <param name="id"></param>
+            <returns>Partner</returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.PartnerController.Create(SubQuip.ViewModel.Partner.PartnerViewModel)">
+            <summary>
+            Create a Partner.
+            </summary>
+            <param name="partnerView"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.PartnerController.Update(SubQuip.ViewModel.Partner.PartnerViewModel)">
+            <summary>
+            Update a Partner.
+            </summary>
+            <param name="partnerView"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.PartnerController.Delete(System.String)">
+            <summary>
+            Delete a Partner.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.PartnerController.DeleteAll(SubQuip.ViewModel.User.UserLoginViewModel)">
+            <summary>
+            Delete All Partners.
+            </summary>
+            <param name="loginModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SubQuip.WebApi.Controllers.RequestController">
+            <summary>
+            Request controller for sending a request to SubQuip
+            </summary>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.RequestController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IHostingEnvironment,SubQuip.Business.Interfaces.IRequestManagerService)">
+            <summary>
+            Initializes a new instance the controller
+            </summary>
+            <param name="configuration">Configuration.</param>
+            <param name="hostingEnvironment">Hosting environment.</param>
+            <param name="requestManager">Request manager.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.RequestController.Requests(SubQuip.Common.CommonData.SearchSortModel)">
+            <summary>
+            Search for submitted requests.
+            </summary>
+            <returns>The requests.</returns>
+            <param name="search">Search.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.RequestController.Details(System.String)">
+            <summary>
+            Get a submitted request by its identifier.
+            </summary>
+            <returns>The details of the request.</returns>
+            <param name="id">Identifier of the request.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.RequestController.Create">
+            <summary>
+            Create and submit a new request.
+            </summary>
+            <returns>Result model.</returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.RequestController.Update">
+            <summary>
+            Update a request.
+            </summary>
+            <returns>The updated request.</returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.RequestController.Delete(System.String)">
+            <summary>
+            Delete a request by the its identifier.
+            </summary>
+            <returns>The request to delete.</returns>
+            <param name="id">Identifier ofthe request to delete.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.RequestController.DeleteAll(SubQuip.ViewModel.User.UserLoginViewModel)">
+            <summary>
+            Delete All Requests.
+            </summary>
+            <param name="loginModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.RequestController.PrepareEmailOptions(SubQuip.ViewModel.Request.RequestViewModel)">
+            <summary>
+            Prepare Email options for various system requests
+            </summary>
+            <param name="requestViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SubQuip.WebApi.Controllers.SearchController">
+            <summary>
+            Search controller.
+            </summary>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.SearchController.#ctor(SubQuip.Business.Interfaces.ISearchManagerService)">
+            <summary>
+            Initializes a new instance of the SearchController
+            </summary>
+            <param name="searchManager">Search manager.</param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.SearchController.Search(System.Int32,System.Int32,SubQuip.Entity.Models.SearchOptions)">
+            <summary>
+            Global Search.
+            </summary>
+            <returns>The search.</returns>
+            <param name="skip">Skip.</param>
+            <param name="take">Take.</param>
+            <param name="searchOptions">Search options.</param>
+        </member>
+        <member name="T:SubQuip.WebApi.Controllers.StatisticsController">
+            <summary>
+            Statistics controller.
+            </summary>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.StatisticsController.#ctor(SubQuip.Business.Interfaces.IBillOfMaterialsManagerService,SubQuip.Business.Interfaces.IEquipmentManagerService,SubQuip.Business.Interfaces.IMaterialManagerService)">
+            <summary>
+            Stat controller
+            </summary>
+            <param name="billOfMaterialsManagerService"></param>
+            <param name="equipmentManagerService"></param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.StatisticsController.GetStats">
+            <summary>
+            Get Statistics 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SubQuip.WebApi.Controllers.UserController">
+            <summary>
+            User controller.
+            </summary>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.UserController.#ctor(SubQuip.Data.Interfaces.IGraphRepository,SubQuip.Business.Interfaces.IUserManagerService)">
+            <summary>
+            Initializes a new instance of the UserController
+            </summary>
+            <param name="graphRepository">graph service.</param>
+            <param name="userManager"></param>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.UserController.Users">
+            <summary>
+            Application users
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.UserController.GetUserTabs">
+            <summary>
+            Get all Tabs For User.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SubQuip.WebApi.Controllers.UserController.SaveTabDetail(SubQuip.ViewModel.User.SavedTabViewModel)">
+            <summary>
+            Save 
+            </summary>
+            <param name="savedTabViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SubQuip.WebApi.Startup">
+            <summary>
+            Web api startup
+            </summary>
+        </member>
+        <member name="M:SubQuip.WebApi.Startup.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Startup constructor
+            </summary>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>

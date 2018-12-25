@@ -1,0 +1,94 @@
+@import "../../../../styles/partials/variable.scss";
+
+.card-main{
+    .pull-left{
+        .fa{
+            color:$white-color;
+            font-size:4.8rem;
+        }
+    }
+    .pull-right{
+        h4{
+            color:$white-color;
+            font-size: 20px;
+            margin:$no-margin;
+            padding-bottom: 8px;
+        }
+        p{
+            margin:$no-margin;
+            color:$white-color;
+            text-transform: capitalize;
+            
+        }
+        text-align:right;
+    }
+    width:100%;
+    float: left;    
+    overflow: hidden;
+    padding:$pad15;
+    box-shadow:$box-shadow;
+    transition: box-shadow 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+    margin-bottom:20px;
+}
+
+.gredient-one{ background: $crimson-gredient;}
+.gredient-two{ background: $purple-gredient;}
+.gredient-three{ background: $green-gredient;}
+.gredient-four{ background: $white-gredient;}
+
+.g-map{
+    box-shadow: $box-shadow;
+    padding: $pad10;
+    background: $white-color;
+    margin-bottom:20px;
+    
+}
+
+.data-nav{
+    ul{
+    li{
+        
+        a{
+            &:hover{
+                background:$strip-blue;
+            }
+            text-decoration: none;
+            font-size: 13px;
+            background:$bg-grey;
+            padding:2px 7px;
+            color: $white-color;
+            cursor: pointer;
+            float: left;
+            border-radius: 6px;
+            width:70px;
+            text-align: center;
+            text-shadow: 1px 1px darken($bg-grey, 10%);
+        }
+        
+        list-style: none;
+        float: left;
+        margin-bottom: 10px;
+        margin-right: 1px;
+        
+    }
+    padding: 0px;
+    margin: 0px;
+}
+}
+
+.no-right-bdr{
+   border-top-right-radius:0px !important; 
+   border-bottom-right-radius:0px !important; 
+}
+.no-left-bdr{
+    border-top-left-radius:0px !important; 
+    border-bottom-left-radius:0px !important; 
+ }
+
+ .selected{
+     a{
+        background: $strip-blue !important;
+        color: $white-color !important;
+     }
+
+ }

@@ -1,0 +1,12 @@
+<div class="side-bar-main">
+    <aside class="side-bar">
+        <ul>
+            <li [routerLinkActive]="['active']" *ngFor="let route of listOfBar | sort ">
+                <a href="javascript:void(0)" [routerLink]="route.name">
+                    <i class="fa fa-tachometer"></i>
+                    <span> {{route.name}}</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+</div>

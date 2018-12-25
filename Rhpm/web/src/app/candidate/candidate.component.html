@@ -1,0 +1,182 @@
+<div class="content-wrapper">
+    <div class="panel panel-default no-radius">
+        <div *ngIf="candidateModel.candidateId == null" class="panelheader panel-heading no-radius">{{ 'CANDIDATE.ADDCANDIDATE' | translate }}</div>
+        <div *ngIf="candidateModel.candidateId != null" class="panelheader panel-heading no-radius">{{ 'CANDIDATE.DETAILS' | translate }}</div>
+        <div class="panel-body">
+            <form (ngSubmit)="onSubmit(candidateForm)" #candidateForm="ngForm">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label>{{ 'CANDIDATE.OPENING' | translate }}</label>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <select class="full-input" name="opening" [(ngModel)]="candidateModel.openingId" [ngModelOptions]="{standalone: true}" [disabled]="openings.length === 1"
+                                    required #opening="ngModel">
+                                    <option *ngFor="let opening of openings" [attr.value]="opening.openingId">{{opening.title}}</option>
+                                </select>
+                                <div *ngIf="opening.errors && (opening.dirty || submitted)" [hidden]="!opening.errors.required" class="validation-error">
+                                    {{ 'CANDIDATE.REQUIRED' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label>{{ 'CANDIDATE.FIRSTNAME' | translate }}</label>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input class="full-input" type="text" required name="firstName" [(ngModel)]="candidateModel.firstName" #firstName="ngModel"
+                                    maxlength="250">
+                                <div *ngIf="firstName.errors && (firstName.dirty || submitted)" [hidden]="!firstName.errors.required" class="validation-error">
+                                    {{ 'CANDIDATE.REQUIRED' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label>{{ 'CANDIDATE.LASTNAME' | translate }}</label>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input class="full-input" type="text" required name="lastName" [(ngModel)]="candidateModel.lastName" #lastName="ngModel"
+                                    maxlength="250">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label>{{ 'CANDIDATE.GENDER' | translate }}</label>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <select name="gender" [(ngModel)]="candidateModel.gender" [ngModelOptions]="{standalone: true}" #gender="ngModel" required
+                                    class="full-input">
+                                    <option [attr.value]="-1">{{ 'COMMON.SELECTDEFAULT' | translate }}</option>
+                                    <option [attr.value]="1">{{ 'CANDIDATE.MALE' | translate }}</option>
+                                    <option [attr.value]="2">{{ 'CANDIDATE.FEMALE' | translate }}</option>
+                                </select>
+                                <div *ngIf="candidateModel.gender < 0 && submitted" class="validation-error">
+                                    {{ 'CANDIDATE.REQUIRED' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label>{{ 'CANDIDATE.QUALIFICATION' | translate }}</label>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <select name="qualification" [(ngModel)]="candidateModel.qualification" [ngModelOptions]="{standalone: true}" #qualification="ngModel"
+                                    required class="full-input">
+                                    <option *ngFor="let qualification of qualifications" [attr.value]="qualification.qualificationId">{{qualification.name}}</option>
+                                </select>
+                                <div *ngIf="qualification.errors && (qualification.dirty || submitted)" [hidden]="!qualification.errors.required" class="validation-error">
+                                    {{ 'CANDIDATE.REQUIRED' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label>{{ 'CANDIDATE.EXPERIENCE' | translate }}</label>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <select name="year" [(ngModel)]="candidateModel.experienceYear" [ngModelOptions]="{standalone: true}" required class="full-input"
+                                    #year="ngModel">
+                                    <option disabled selected [attr.value]="-1">{{ 'COMMON.SELECTDEFAULT' | translate }}</option>
+                                    <option *ngFor="let year of years" [attr.value]="year">{{year}}</option>
+                                </select>
+                                <div *ngIf="candidateModel.experienceYear < 0 && submitted" class="validation-error">
+                                    {{ 'CANDIDATE.REQUIRED' | translate }}
+                                </div>
+                                <label>{{ 'CANDIDATE.EXPERIENCEYEAR' | translate }}</label>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <select class="full-input" name="month" [(ngModel)]="candidateModel.experienceMonth" [ngModelOptions]="{standalone: true}"
+                                    #month="ngModel" required>
+                                    <option disabled selected [attr.value]="-1">{{ 'COMMON.SELECTDEFAULT' | translate }}</option>
+                                    <option *ngFor="let month of months" [attr.value]="month">{{month}}</option>
+                                </select>
+                                <div *ngIf="candidateModel.experienceMonth < 0 && submitted" class="validation-error">
+                                    {{ 'CANDIDATE.REQUIRED' | translate }}
+                                </div>
+                                <label>{{ 'CANDIDATE.EXPERIENCEMONTH' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label>{{ 'CANDIDATE.ORGANIZATION' | translate }}</label>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input autocomplete="off" type="text" (keyup)="onInputChangedEvent($event.target.value)" required name="org" [(ngModel)]="candidateModel.organizationName"
+                                    #org="ngModel" maxlength="250" class="auto-input">
+                                <div class="search-result" *ngIf="flag">
+                                    <ul>
+                                        <li *ngFor="let organization of organizations">
+                                            <a (click)="onSelectOrganization(organization)">{{ organization.name }}</a>    
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div *ngIf="org.errors && (org.dirty || submitted)" [hidden]="!org.errors.required" class="validation-error">
+                                    {{ 'CANDIDATE.REQUIRED' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label>{{ 'CANDIDATE.DESCRIPTION' | translate }}</label>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <textarea class="full-tarea" type="text" name="description" [(ngModel)]="candidateModel.description" #description="ngModel"
+                                    required maxlength="250">
+                                </textarea>
+                                <div *ngIf="description.errors && (description.dirty || submitted)" [hidden]="!description.errors.required" class="validation-error">
+                                    {{ 'CANDIDATE.REQUIRED' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="file" name="resume" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx">
+                        <div *ngIf="candidateModel.candidateId == null && !isUploaded && submitted" class="validation-error">
+                            {{ 'CANDIDATE.REQUIRED' | translate }}
+                        </div>
+                    </div>
+                    <div *ngIf="candidateModel.candidateId != null">
+                        <a (click)="downloadCandidateResume(candidateModel.candidateDocument.uploadedDocument, candidateModel.candidateDocument.documentName)"
+                            download="candidateModel.candidateDocument.documentName">{{ candidateModel.candidateDocument.documentName}}</a>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <button id="bttn" type="submit" class="btn btn-primary blue-btn pull-right btn-gap">{{ 'CANDIDATE.SAVE' | translate }}</button>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <button id="bttn" type="button" (click)="goBack()" class="btn btn-primary blue-btn pull-right btn-gap">{{ 'CANDIDATE.BACK' | translate }}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <app-approvalhistory *ngIf="candidateModel.candidateId != null" [entityId]="candidateModel.candidateId">  </app-approvalhistory>
+</div>

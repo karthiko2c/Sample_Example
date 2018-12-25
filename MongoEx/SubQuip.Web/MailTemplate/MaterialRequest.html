@@ -1,0 +1,64 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        body {
+            width: 850px;
+        }
+
+        h3.summary-header {
+            font-weight: bold;
+        }
+
+        span.form-header {
+            font-weight: bold;
+        }
+
+        .summary {
+            margin-left: 15px;
+        }
+
+        .description {
+            margin-top: 25px;
+        }
+
+        .bye {
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+    <p>Hi,</p>
+    <p>
+        The following request has been raised for the Material. Below is the summary 
+    </p>
+
+    <div class="summary">
+        <h3 class=summary-header>Summary</h3>
+        <div class="description">
+            <div>
+                <span>I would like to order subsea material</span>
+            </div>
+            <div>
+                <span class='form-header'>Part Name/Number: </span>
+                <span class='form-data'>{MaterialNumber}</span>
+            </div>
+            <div>
+                <span class="form-header">From Date: </span>
+                <span class="form-data">{FromDate}</span>
+
+                <span class="form-header"> To Date: </span>
+                <span class="form-data">{ToDate}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="bye">
+        <span class="br">Best Regards</span><br/>
+        <span class="thnks">Team SubQuip</span>
+    </div>
+</body>
+</html>

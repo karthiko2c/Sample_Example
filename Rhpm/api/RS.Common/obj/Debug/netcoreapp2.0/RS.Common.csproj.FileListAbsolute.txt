@@ -1,0 +1,9 @@
+D:\RHPM\Recruitment-System\api\RS.API\RS.Common\bin\Debug\netcoreapp2.0\RS.Common.deps.json
+D:\RHPM\Recruitment-System\api\RS.API\RS.Common\bin\Debug\netcoreapp2.0\RS.Common.dll
+D:\RHPM\Recruitment-System\api\RS.API\RS.Common\bin\Debug\netcoreapp2.0\RS.Common.pdb
+D:\RHPM\Recruitment-System\api\RS.API\RS.Common\obj\Debug\netcoreapp2.0\RS.Common.csprojResolveAssemblyReference.cache
+D:\RHPM\Recruitment-System\api\RS.API\RS.Common\obj\Debug\netcoreapp2.0\RS.Common.csproj.CoreCompileInputs.cache
+D:\RHPM\Recruitment-System\api\RS.API\RS.Common\obj\Debug\netcoreapp2.0\RS.Common.AssemblyInfoInputs.cache
+D:\RHPM\Recruitment-System\api\RS.API\RS.Common\obj\Debug\netcoreapp2.0\RS.Common.AssemblyInfo.cs
+D:\RHPM\Recruitment-System\api\RS.API\RS.Common\obj\Debug\netcoreapp2.0\RS.Common.dll
+D:\RHPM\Recruitment-System\api\RS.API\RS.Common\obj\Debug\netcoreapp2.0\RS.Common.pdb

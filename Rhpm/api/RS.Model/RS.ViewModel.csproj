@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>RS.ViewModel</AssemblyName>
+    <RootNamespace>RS.ViewModel</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CoreCompat.System.Drawing" Version="1.0.0-beta006" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RS.Common\RS.Common.csproj" />
+    <ProjectReference Include="..\RS.Entity\RS.Entity.csproj" />
+  </ItemGroup>
+
+</Project>

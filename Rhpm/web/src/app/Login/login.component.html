@@ -1,0 +1,42 @@
+<div class="login-inner-bg">
+    <div class="login-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="login-area">
+                        <p class="heading text-center">{{ 'LOGIN.SIGNIN' | translate }}</p>
+                        <div class="row">
+                            <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+                                <div class="col-xs-12">
+                                    <div class="login-mid">
+                                        <div class="form-group">
+                                            <input autofocus class="type-text" type="text" name="userName" placeholder="{{ 'USER.USERNAME' | translate }}" [(ngModel)]="loginModel.userEmail"
+                                                #userName="ngModel" maxlength="50" required>
+                                                <div *ngIf="userName.errors && (userName.dirty || submitted)" [hidden]="!userName.errors.required" class="validation-error">
+                                                    {{ 'USER.REQUIRED' | translate }}
+                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="type-text" type="password" name="password" placeholder="{{ 'USER.PASSWORD' | translate }}" [(ngModel)]="loginModel.userPassword"
+                                                #password="ngModel" maxlength="25" required>
+                                                <div *ngIf="password.errors && (password.dirty || submitted)" [hidden]="!password.errors.required" class="validation-error">
+                                                    {{ 'USER.REQUIRED' | translate }}
+                                                </div>
+                                        </div>
+                                        <div class="pull-right forgot">
+                                            <a data-toggle="modal" (click)="forgotpassword()">{{ 'USER.FORGOTPASSWORD' | translate }} </a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="text-center">
+                                            <button id="bttn" type="submit" class="round-btn">{{ 'USER.LOGIN' | translate }}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

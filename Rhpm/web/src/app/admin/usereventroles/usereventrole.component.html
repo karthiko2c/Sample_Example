@@ -1,0 +1,72 @@
+<div class="content-wrapper">
+    <div class="panel panel-default">
+        <div class="panelheader panel-heading">Add EventRole</div>
+        <div class="panel-body">
+            <form (ngSubmit)="onSubmit(eventRoleForm)" #eventRoleForm="ngForm">
+                <div class="form-group">
+                    <div>
+                        <label>{{ 'EVENTROLE.APPROVAL' | translate }}</label>
+                        <div>
+                            <select [(ngModel)]="approvalId" [ngModelOptions]="{standalone: true}" (change)="getApprovalEvents()" required>
+                                <option *ngFor="let approval of approvals" [attr.value]="approval.approvalId">{{approval.approvalName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label>{{ 'EVENTROLE.APPROVALEVENT' | translate }}</label>
+                        <div>
+                            <select [(ngModel)]="approvalEventRoleModel.approvalEventId" [ngModelOptions]="{standalone: true}" (change)="setRoles()" required>
+                                <option *ngFor="let approvalEvent of approvalEvents" [attr.value]="approvalEvent.approvalEventId">{{approvalEvent.approvalEventName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label>{{ 'EVENTROLE.ROLE' | translate }}</label>
+                        <div>
+                            <select [(ngModel)]="approvalEventRoleModel.roleId" [ngModelOptions]="{standalone: true}" (change)="getUsers()"
+                                required>
+                                <option *ngFor="let role of roles" [attr.value]="role.roleId">{{role.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div *ngIf="users.length > 0">
+                        <label>{{ 'EVENTROLE.USERS' | translate }}*</label>
+
+                        <div *ngFor="let user of users">
+                            <div class="col-xs-3">
+                                <label>
+                                    <input type="checkbox" [checked]="user.isChecked" name="user" [attr.value]="user.userId" (change)="onChangeUsers(user, $event.target.checked)"
+                                        [name]="user.fullName" />
+                                    <span innerHTML="{{user.fullName}}"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="bttn" type="submit" class="btn btn-primary">{{ 'EVENTROLE.SAVE' | translate }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="container">
+        <h2>{{ 'EVENTROLE.LIST' | translate }}</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>{{ 'EVENTROLE.APPROVALEVENT' | translate }}</th>
+                    <th>{{ 'EVENTROLE.ROLE' | translate }}</th>
+                    <th>{{ 'EVENTROLE.USERNAME' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let eventRole of approvalEventRoleModels">
+                    <td>{{eventRole.approvalEvent}}</td>
+                    <td>{{eventRole.role}}</td>
+                    <td>{{eventRole.user}}</td>
+                    <td>
+                        <button title="Delete" class="btn btn-danger" (click)="deleteEventRole(eventRole.approvalEventRoleId)">{{ 'CANDIDATE.DELETE' | translate }}</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

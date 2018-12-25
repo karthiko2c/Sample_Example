@@ -1,0 +1,6 @@
+[
+{"_id":{"$oid":"5b1f9f8fee9abe4f784526b0"},"equipment_number":"Shell_01_02","serial_number":"MI_0111","owner":"Shell","license":"Installation","location":"61°12'32.28\" N 2°16'15.55\" E","grossweight":"2228 Kgs","size_dimensions":"2000*5000*1800 mm","material":{"$oid":"5b1f682906868b5e54fdb16f"}},
+{"_id":{"$oid":"5b1fa2dc9721c02db0b7f946"},"equipment_number":"Lupin_01_01","serial_number":"MI_0112","owner":"Lupin","license":"Installation","location":"61°12'32.28\" N 2°16'15.55\" E","grossweight":"3.4 Kgs","size_dimensions":"5000*4000*1300 mm","material":{"$oid":"5b1f682906868b5e54fdb16f"}},
+{"_id":{"$oid":"5b20af099ac5c31cf004d7e2"},"equipment_number":"Point_01_02","serial_number":"MI_0113","owner":"Point","license":"Installation","location":"61°12'32.28\" N 2°16'15.55\" E","grossweight":"2248 Kgs","size_dimensions":"2300*5400*1850 mm","material":{"$oid":"5b1f682906868b5e54fdb16f"}},
+{"_id":{"$oid":"5b275a8c42d1931fb0e5bab8"},"equipment_number":"Lupin_01_02","serial_number":"MI_0113","owner":"Lupin","license":"Installation","location":"61°12'32.28\" N 2°16'15.55\" E","grossweight":"3.4 Kgs","size_dimensions":"5000*4000*1300 mm","material":{"$oid":"5b1f682906868b5e54fdb16f"}}
+]

@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>SubQuip.ViewModel</AssemblyName>
+    <RootNamespace>SubQuip.ViewModel</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Approval\**" />
+    <Compile Remove="Candidate\**" />
+    <Compile Remove="Opening\**" />
+    <EmbeddedResource Remove="Approval\**" />
+    <EmbeddedResource Remove="Candidate\**" />
+    <EmbeddedResource Remove="Opening\**" />
+    <None Remove="Approval\**" />
+    <None Remove="Candidate\**" />
+    <None Remove="Opening\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SubQuip.Common\SubQuip.Common.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,30 @@
+<div class="content-wrapper">
+    <div class="panel panel-default no-radius">
+        <div class="panelheader panel-heading no-radius">Assign User</div>
+        <div class="panel-body">
+            <form (ngSubmit)="onSubmit(assignUserForm)" #assignUserForm="ngForm">
+                <li *ngFor="let approvalEvent of approvalEvents">
+                    <label class="col-xs-12">{{ approvalEvent.approvalEventName }}</label>
+                    <div *ngFor="let user of approvalEvent.users">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <label>
+                                <input type="checkbox" [checked]="user.isChecked" [attr.value]="user.userId" (change)="onChangeUsers(user, approvalEvent, $event.target.checked)"
+                                    [name]="user.name" />
+                                <span innerHTML="{{user.firstName}}"></span>
+                            </label>
+                        </div>
+                    </div>
+                </li>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <button id="bttn" type="submit" class="btn btn-primary blue-btn pull-right btn-gap">{{ 'CANDIDATE.SUBMIT' | translate }}</button>
+                </div>
+            </form>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <button id="bttn" type="button" (click)="goBack(candidateAssignedUser.candidateId)" class="btn btn-primary blue-btn pull-right btn-gap">{{ 'CANDIDATE.BACK' | translate }}</button>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <button id="bttn" type="button" (click)="showCandidateList()" class="btn btn-primary blue-btn pull-right btn-gap">{{ 'CANDIDATE.CANCEL' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>

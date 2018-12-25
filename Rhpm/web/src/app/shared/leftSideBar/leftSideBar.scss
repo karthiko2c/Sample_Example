@@ -1,0 +1,99 @@
+@import "../../../styles/partials/variable.scss";
+
+/*========= LEFT SIDE BAR CSS START HERE =========*/
+
+.side-bar{
+    ul{
+        li{
+            a{
+                span{
+                    @media screen and (max-width:$mobile-screen){
+                        display:none;
+                    }
+                }
+                .fa{
+                    @media screen and (max-width:$mobile-screen){
+                        font-size:22px;
+                    }
+                    margin-right: 10px;
+                    font-size:15px;
+                }
+                &:hover{
+                    background: $blue-gredient;
+                    color:$white-color;
+                }
+                text-decoration:none;
+                font-size: 14px;
+                padding:14px 20px 14px 14px;
+                display:block;
+                cursor: pointer;
+                color:darken($white-color, 20%);
+                 text-transform: capitalize;
+            }
+            list-style:none;
+            padding: 0; margin:0;
+            border-bottom:1px solid $white-color;
+        }
+        .active{
+            a{
+              background: $blue-gredient;
+              color:$white-color;  
+            }
+        }
+        padding: 0;
+        margin: 0;
+    }
+    @media screen and (max-width:$mobile-screen){
+        width:50px;
+        height:auto;
+    }
+    height: 100%;
+    width: 220px;
+    border-right:1px solid lighten($light-blue, 20%);
+    background:$green-dark-color;
+    overflow: hidden;
+}
+.side-bar-main{
+    @media screen and(max-width:$mobile-screen) {
+        z-index: 99;
+        height:100%;
+        transition: all 0.5s ease-in-out;
+        width:50px;
+    }
+    position: absolute;
+    left: 0; 
+    right:0;
+    top:70px;
+    bottom:0;
+    width:230px;
+}
+
+.side-left{
+    .side-bar{
+        ul{
+            li{
+                a{
+                    .fa{
+                        @media screen and (max-width:$mobile-screen){
+                            font-size: 22px;    
+                        }
+                        font-size: 22px;
+                    }
+                    span{
+                        display: none;
+                    }
+                }
+            }
+        }
+        width:50px !important;
+    }
+    @media screen and (max-width:$mobile-screen){
+        transition: all 0.5s ease-in-out; 
+    }
+ width:60px !important;
+   
+}
+
+
+
+/*========= LEFT SIDE BAR CSS END HERE =========*/

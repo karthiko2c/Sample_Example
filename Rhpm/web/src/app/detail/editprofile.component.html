@@ -1,0 +1,87 @@
+<div class="content-wrapper">
+    <div class="panel panel-default no-radius">
+        <div class="panelheader panel-heading no-radius">{{ 'EDITPROFILE.TITLE' | translate }}</div>
+        <div class="panel-body">
+            <form (ngSubmit)="onSubmit(editprofileForm)" #editprofileForm="ngForm">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <input type="file" (change)="fileChangeEvent($event)" />
+
+                            <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 3" [resizeToWidth]="128"
+                                format="png" (imageCropped)="imageCropped($event)"></image-cropper>
+
+                            <img [src]="croppedImage" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label>{{ 'USER.FIRSTNAME' | translate }}</label>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="hidden" name="userId" [(ngModel)]="userModel.userId">
+                                <input class="full-input" type="text" required name="firstname" [(ngModel)]="userModel.firstName" #firstName="ngModel" maxlength="25">
+                                <div *ngIf="firstName.errors && (firstName.dirty || submitted)" [hidden]="!firstName.errors.required" class="validation-error">
+                                    {{ 'USER.REQUIRED' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label>{{ 'USER.LASTNAME' | translate }}</label>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input class="full-input" type="text" required name="lastName" [(ngModel)]="userModel.lastName" #lastName="ngModel" maxlength="25">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label>{{ 'USER.USERNAME' | translate }}</label>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input class="full-input" type="text" required name="userName" [(ngModel)]="userModel.userName"
+                                    #userName="ngModel" maxlength="25">
+                                <div *ngIf="userName.errors && (userName.dirty || submitted)" [hidden]="!userName.errors.required" class="validation-error">
+                                    {{ 'USER.REQUIRED' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label>{{ 'USER.EMAIL' | translate }}</label>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input class="full-input" type="text" required name="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [(ngModel)]="userModel.email"
+                                    #email="ngModel" maxlength="25">
+                                <div *ngIf="email.errors && (email.dirty || submitted)" [hidden]="!email.errors.required" class="validation-error">
+                                    {{ 'USER.REQUIRED' | translate }}
+                                </div>
+                                <div [hidden]="!email.hasError('pattern')">{{ 'USER.EMAILFORMAT' | translate }}
+                                    <small>
+                                        <b> {{ 'USER.EMAILPATTERN' | translate }}</b>
+                                    </small>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="cancel" class="btn btn-primary blue-btn pull-right btn-gap btn-pad" (click)="goBack()">{{ 'CHANGEPASSWORD.CLOSE' | translate }}</button>
+                        <button type="submit" class="btn btn-primary blue-btn pull-right btn-gap">{{ 'USER.UPDATE' | translate }}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

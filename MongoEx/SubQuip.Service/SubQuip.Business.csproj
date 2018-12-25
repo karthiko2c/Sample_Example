@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SubQuip.Common\SubQuip.Common.csproj" />
+    <ProjectReference Include="..\SubQuip.Data\SubQuip.Data.csproj" />
+    <ProjectReference Include="..\SubQuip.Entity\SubQuip.Entity.csproj" />
+    <ProjectReference Include="..\SubQuip.Model\SubQuip.ViewModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Logic\RoleManagerService.cs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,77 @@
+<div class="content-wrapper">
+    <app-approvalstrip *ngIf="isDataAvailable" [entityModel]="opening" [approvalType]="approval" (onSubmit)="onSubmit($event)"></app-approvalstrip>
+    <div class="panel panel-default no-radius">
+        <div *ngIf="openingModel.openingId == null" class="panelheader panel-heading no-radius">Create Opening</div>
+        <div *ngIf="openingModel.openingId != null" class="panelheader panel-heading no-radius">Job Details</div>
+        <div class="panel-body">
+            <form #openingForm="ngForm">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <label>{{ 'OPENING.TITLE' | translate }}</label>
+                            </div>
+                            <div class="col-md-9 col-sm-6 col-xs-12">
+                                <input autofocus class="full-input" type="text" required name="title" [(ngModel)]="openingModel.title" #title="ngModel" maxlength="25">
+                                <div *ngIf="title.errors && (title.dirty || submitted)" [hidden]="!title.errors.required" class="validation-error">
+                                    {{ 'OPENING.REQUIRED' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <label>{{ 'OPENING.DESCRIPTION' | translate }}</label>
+                            </div>
+                            <div class="col-md-9 col-sm-6 col-xs-12">
+                                <textarea class="full-input" type="text" required name="description" [(ngModel)]="openingModel.description" #description="ngModel"
+                                    maxlength="250">
+                                            </textarea>
+                                <div *ngIf="description.errors && (description.dirty || submitted)" [hidden]="!description.errors.required" class="validation-error">
+                                    {{ 'OPENING.REQUIRED' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group skill-main">
+                    <div class="row">
+                        <label class="col-xs-12">{{ 'OPENING.PRIMARYSKILLS' | translate }}*
+                            <div *ngIf="openingModel.primarySkillTypes.length <= 0 && submitted" class="validation-error">
+                                {{ 'OPENING.REQUIRED' | translate }}
+                            </div>
+                        </label>
+
+                        <ng-container *ngIf="primarySkillModels.length > 0">
+                            <div *ngFor="let skill of primarySkillModels">
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <label>
+                                        <input type="checkbox" [checked]="skill.isChecked" name="skillType" [attr.value]="skill.skillId" (change)="onChangePrimarySkills(skill, $event.target.checked)"
+                                            [name]="skill.name" />
+                                        <span innerHTML="{{skill.name}}"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div class="row">
+                        <label class="col-xs-12">{{ 'OPENING.SECONDARYSKILLS' | translate }}</label>
+                        <ng-container *ngIf="primarySkillModels.length > 0">
+                            <div *ngFor="let skill of secondarySkillModels">
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <label>
+                                        <input type="checkbox" [checked]="skill.isChecked" [attr.value]="skill.skillId" (change)="onChangeSecondarySkills(skill, $event.target.checked)"
+                                            [name]="skill.name" />
+                                        <span innerHTML="{{skill.name}}"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <app-approvalhistory *ngIf="openingModel.openingId != null" [entityId]="openingModel.openingId"></app-approvalhistory>
+</div>

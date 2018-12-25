@@ -1,0 +1,41 @@
+<div class="content-wrapper">
+    <h2>{{ 'CANDIDATE.LIST' | translate }}</h2>
+    <button *ngIf="loggedRole == 'Sr.HR'" title="Add" class="btn btn-primary no-radius blue-btn pull-right" (click)="addCandidate()">Add</button>
+    <div class="table-responsive-top">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>{{ 'CANDIDATE.NAME' | translate }}</th>
+                        <th>{{ 'CANDIDATE.EXPERIENCE' | translate }}</th>
+                        <th>{{ 'CANDIDATE.OPENINGFOR' | translate }}</th>
+                        <th>{{ 'CANDIDATE.STATUS' | translate }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let candidate of candidates">
+                        <td>{{candidate.firstName}} {{candidate.lastName}}</td>
+                        <td>{{candidate.experienceYear}}{{ 'CANDIDATE.YEAR' | translate }} {{candidate.experienceMonth}}{{ 'CANDIDATE.MONTH'
+                            | translate }}</td>
+                        <td>{{candidate.opening}}</td>
+                        <td>{{candidate.status}}</td>
+                        <td *ngIf="loggedRole == 'Sr.HR'">
+                            <button *ngIf="!candidate.isApproved" title="Delete" class="btn btn-danger no-radius" (click)="deleteCandidate(candidate.candidateId)">{{ 'CANDIDATE.DELETE' | translate }}</button>
+                            <button *ngIf="!candidate.isApproved" title="Edit" class="btn btn-primary blue-btn no-radius" (click)="updateCandidate(candidate.candidateId)">{{ 'CANDIDATE.EDIT' | translate }}</button>
+                            <!--<button *ngIf="!candidate.isReadyForInterview" title="Start Interview" class="btn btn-primary blue-btn no-radius" (click)="startInterview(candidate)">{{ 'CANDIDATE.STARTINTERVIEW' | translate }}</button>!-->
+                            <button *ngIf="!candidate.isApproved" title="Schedule Interview" class="btn btn-primary blue-btn no-radius" (click)="scheduleInterview(candidate.candidateId)">{{ 'CANDIDATE.SCHEDULEINTERVIEW' | translate }}</button>
+                            <button *ngIf="candidate.isApproved" title="View" class="btn btn-primary blue-btn no-radius" (click)="getCandidateDetail(candidate.candidateId)">{{ 'CANDIDATE.VIEW' | translate }}</button>
+                        </td>
+                        <td *ngIf="loggedRole != 'Sr.HR'">
+                            <button *ngIf="!candidate.isFinished" title="TakeInterview" class="btn btn-primary blue-btn no-radius" (click)="startInterview(candidate)">{{ 'CANDIDATE.TAKEINTERVIEW' | translate }}</button>
+                            <button *ngIf="candidate.isFinished" title="View" class="btn btn-primary blue-btn no-radius" (click)="getCandidateDetail(candidate.candidateId)">{{ 'CANDIDATE.VIEW' | translate }}</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="table-slide">
+        <p>Slide to view table</p>
+    </div>
+</div>

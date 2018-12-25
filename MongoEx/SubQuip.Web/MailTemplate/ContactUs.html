@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <style>
+        body {
+            width: 850px;
+        }
+
+        span.form-header {
+            font-weight: bold;
+        }
+
+        .summary {
+            margin-left: 15px;
+        }
+
+        .description {
+            margin-top: 25px;
+        }
+
+        .bye {
+            margin-top: 25px;
+        }
+
+        .br {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <p>Hi {Name},</p>
+    <p>Following is a summary of the contact form sent to SubQuip from Subquip.com</p>
+
+    <div class="summary">
+        <div>
+            <span class="form-header">From: </span>
+            <span class="form-data">{Name}</span>
+        </div>
+        <div>
+            <span class="form-header">Company: </span>
+            <span class="form-data">{Company}</span>
+        </div>
+        <div>
+            <span class="form-header">Phone: </span>
+            <span class="form-data">{PhoneNumber}</span>
+        </div>
+        <div>
+            <span class="form-header">Email: </span>
+            <span class="form-data">{Email}</span>
+        </div>
+        <div class="description">
+            <span class="form-header">Message: </span>
+            <div>
+                <span class="form-data">{Message}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="bye">
+        <span class="br">Best Regards</span><br/>
+        <span class="thnks">Team SubQuip</span>
+    </div>
+</body>
+</html>

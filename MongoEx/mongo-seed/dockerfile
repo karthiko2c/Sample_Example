@@ -1,0 +1,14 @@
+FROM mongo
+
+COPY *.json /seed-data/
+COPY *.sh /
+#Repeat the below statement for each collection, want to import
+#CMD mongoimport --host mongodb --db subquip --collection users --type json --file /seed-data/user.json --jsonArray
+#CMD mongoimport --host mongodb --db subquip --collection MATERIALS --type json --file /seed-data/materials.json --jsonArray
+
+ENTRYPOINT ["./entrypoint.sh"]
+CMD ["start"]
+
+
+
+

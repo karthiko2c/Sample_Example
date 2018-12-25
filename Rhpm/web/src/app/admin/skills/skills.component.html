@@ -1,0 +1,105 @@
+<div class="content-wrapper">
+    <div class="panel no-radius">
+        <div id="updatePanel" class="panel-heading no-radius">
+            <div *ngIf="skillsModel.skillId===undefined; then create else update"></div>
+            <ng-template #create>Create Skill</ng-template>
+            <ng-template #update>Update Skill</ng-template>
+        </div>
+        <div class="panel-body">
+            <form (ngSubmit)="onSubmit(skillsForm)" #skillsForm="ngForm" class="form-horizontal">
+                <div class="row">
+                    <div class="col-md-10 col-sm-10 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <label for="name"> {{ 'SKILLS.NAME' | translate }}</label>
+                                    </div>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input autofocus type="text" class="full-input" id="skills" id="name" name="skillName" [(ngModel)]="skillsModel.name" #skillName="ngModel"
+                                            required minlength="3" maxlength="20" (keyup)="checkNameExitsOnBlur()">
+                                        <div *ngIf="isSkillExists" id="nameExists" class="text">{{ 'SKILLS.EXIST' | translate }}</div>
+                                        <div *ngIf="skillName.errors && (skillName.dirty || submitted)" [hidden]="!skillName.errors.required" class="validation-error">
+                                            {{ 'USER.REQUIRED' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <label for="description">{{ 'SKILLS.DESCRIPTION' | translate }} </label>
+                                    </div>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input type="text" class="full-input" id="description" name="description" [(ngModel)]="skillsModel.description" #description="ngModel"
+                                            required>
+                                        <div *ngIf="description.errors && (description.dirty || submitted)" [hidden]="!description.errors.required" class="validation-error">
+                                            {{ 'SKILLS.REQUIRED' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs-12">
+                        <button type="submit" id="btnSave" class="btn btn-primary blue-btn no-radius full-width">{{ 'SKILLS.SAVE' | translate }}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <h3>{{ 'SKILL_DETAILS.SKILL_DETAILS' | translate }}</h3>
+    <input (keydown)="onKeydown($event)" (keyup)="clear()" class="search search-skill" placeholder="{{ 'SKILLS.SEARCH' | translate }}" name="listFilter" type="text"
+        [(ngModel)]="listFilter" />
+    <button [disabled]="!listFilter" type="submit" (click)="search()" class="btn">GO</button>
+
+    <div class="table-responsive-top">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th width=400 class="pointer" (click)="sort('Name')">
+                            <span class="pull-left"> {{ 'SKILL_DETAILS.SKILLS' | translate }}</span>
+                            <span class="arrow-gap">
+                                <i class="fa" [ngClass]="{'fa-sort': searchAndSortModel.property !== 'Name', 
+                                'fa-sort-asc': (searchAndSortModel.property === 'Name' && !isDesc), 
+                                'fa-sort-desc': (searchAndSortModel.property === 'Name' && isDesc) }" aria-hidden="true">
+                                </i>
+                            </span>
+                        </th>
+
+                        <th width=400> {{ 'SKILL_DETAILS.DESCRIPTION' | translate }}</th>
+                        <th width=400> {{ 'SKILL_DETAILS.ACTION' | translate }}</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr *ngIf="skills.length === 0; else rowTemplate" >
+                        <td></td>
+                        <td align="center"> {{ 'SKILLS.NORECORD' | translate }} </td>
+                        <td></td>  
+                    </tr>
+                    <ng-template #rowTemplate>
+                            <tr *ngFor="let skill of skills; let i = index">
+                                    <td>{{skill.name}}</td>
+                                    <td>{{skill.description}}</td>
+                                    <td>
+                                        <a class="btn btn-primary  blue-btn" (click)="editSkills(skill.skillId)">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </a>
+                                        <a class="btn btn-danger no-radius btn-pad" (click)="deleteSkills(skill,i)">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                    </ng-template>
+                 
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="table-slide">
+        <p>Slide to view table</p>
+    </div>
+</div>

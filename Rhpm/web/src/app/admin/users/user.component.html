@@ -1,0 +1,165 @@
+<div class="content-wrapper">
+    <div class="panel panel-default no-radius">
+        <div class="panelheader panel-heading no-radius">
+            <div *ngIf="userModel.userId === undefined; then create else update"></div>
+            <ng-template #create>Create User</ng-template>
+            <ng-template #update>Update User</ng-template>
+        </div>
+
+        <div class="panel-body">
+            <form (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <mat-form-field class="full-width">
+                                    <br/>
+                                    <input matInput autofocus type="text" class="inputText" autocomplete="off" required placeholder="{{ 'USER.FIRSTNAME' | translate }}"
+                                        name="firstName" [(ngModel)]="userModel.firstName" #firstName="ngModel" maxlength="25">
+                                </mat-form-field>
+                                <mat-error *ngIf="firstName.errors && submitted" [hidden]="!firstName.errors.required" class="validation-error">
+                                    {{ 'USER.REQUIRED' | translate }}
+                                </mat-error>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <mat-form-field class="full-width">
+                                    <br/>
+                                    <input matInput autocomplete="off" class="inputText" type="text" placeholder="{{ 'USER.LASTNAME' | translate}}" name="lastName"
+                                        [(ngModel)]="userModel.lastName" #lastName="ngModel" maxlength="25">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <mat-form-field class="full-width">
+                                    <br/>
+                                    <input matInput autocomplete="off" class="inputText" placeholder="{{ 'USER.USERNAME' | translate }}" type="text" required
+                                        id="name" id="user" name="userName" [(ngModel)]="userModel.userName" #userName="ngModel"
+                                        maxlength="25" (keyup)="checkUserNameExists()">
+                                </mat-form-field>
+                                <mat-error *ngIf="isUserExists" id="nameExists" class="text">{{ 'USER.USERNAMEEXISTMESSAGE' | translate }}</mat-error>
+                                <mat-error *ngIf="userName.errors && submitted" [hidden]="!userName.errors.required" class="validation-error">
+                                    {{ 'USER.REQUIRED' | translate }}
+                                </mat-error>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <mat-form-field class="full-width">
+                                    <br/>
+                                    <input matInput autocomplete="off" class="inputText" type="password" required placeholder="{{ 'USER.PASSWORD' | translate }}"
+                                        name="password" pattern="^[a-z0-9_-]{6,}$" [(ngModel)]="passwrd" #password="ngModel"
+                                        maxlength="50">
+                                </mat-form-field>
+                                <mat-error *ngIf="password.errors && submitted" [hidden]="!password.errors.required" class="validation-error">
+                                    {{ 'USER.REQUIRED' | translate }}
+                                </mat-error>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <mat-form-field class="full-width">
+                                    <br/>
+                                    <input matInput autocomplete="off" class="inputText" type="password" placeholder="{{ 'USER.CONFIRM' | translate }}" required
+                                        name="confirmPassword" [(ngModel)]="confirmPasswrd" #confirmPassword="ngModel" maxlength="25">
+                                </mat-form-field>
+                                <mat-error *ngIf="confirmPassword.errors && submitted" [hidden]="!confirmPassword.errors.required" class="validation-error">
+                                    {{ 'USER.REQUIRED' | translate }}
+                                </mat-error>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <mat-form-field class="full-width">
+                                    <br/>
+                                    <input matInput autocomplete="off" class="inputText" type="text" placeholder="{{ 'USER.EMAIL' | translate }}" autocomplete="off"
+                                        required name="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [(ngModel)]="userModel.email"
+                                        #email="ngModel" maxlength="25" (keyup)="checkUserEmailExists()">
+                                </mat-form-field>
+                                <mat-error *ngIf="isEmailExists" id="emailExists" class="text">
+                                    {{ 'USER.EMAILIDEXISTMESSAGE' | translate }}
+                                </mat-error>
+                                <mat-error *ngIf="email.errors && submitted && isEmailNull" [hidden]="!email.errors.required" class="validation-error">
+                                    {{ 'USER.REQUIRED' | translate }}
+                                </mat-error>
+                                <mat-error *ngIf="email.hasError('pattern') && submitted" class="validation-error" [hidden]="!email.hasError('pattern')">{{ 'USER.EMAILFORMAT' | translate }}
+                                    <small>
+                                        <b>{{ 'USER.EMAILPATTERN' | translate }}</b>
+                                    </small>
+                                </mat-error>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <mat-form-field class="full-width">
+                                    <br/>
+                                    <mat-select name="role" class="inputText" [ngModelOptions]="{standalone: true}" [(ngModel)]="userModel.roleId" #role="ngModel"
+                                        (change)="checkRole()">
+                                        <mat-option *ngFor="let role of roles" [value]="role.roleId">{{role.name}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-error *ngIf="isRoleNull" class="validation-error">
+                                    {{ 'USER.SELECTROLE' | translate }}
+                                </mat-error>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-xs-12 text-center">
+                            <button id="bttn" type="submit" class="btn btn-primary blue-btn pull-right btn-gap">{{ 'USER.SAVE' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div>
+                            <img [src]="croppedImage" id='img' />
+                            <br>
+                            <div class="upload-btn-wrapper">
+                                <button class="uploadbtn"> {{ 'USER.UPLOADPROFILE' | translate }}</button>
+                                <input type="file" (change)="fileChangeEvent($event)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="cropper-container">
+                            <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 3" [resizeToWidth]="128"
+                                class="img-cropper" format="png" (imageCropped)="imageCropped($event)"></image-cropper>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+http://localhost:50035/api/Equipment/UploadEquipmentDocument 
+
+c3dnOkpNTT9rbT05WE0hIyxMdCE=
+
+ "Title" : "Subquip-Test",
+    "Description": "equip comment",
+    "RegardingId":"5b4326368c6fa11ed86b7944",
+    "BomItemType":BomItemType.Equipment

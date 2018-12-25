@@ -1,0 +1,44 @@
+<div class="content-wrapper">
+    <div class="panel panel-default no-radius">
+        <div class="panelheader panel-heading no-radius">{{ 'CANDIDATE.SCHEDULEINTERVIEW' | translate }}</div>
+        <div class="panel-body">
+            <form (ngSubmit)="onSubmit(scheduleInterviewForm)" #scheduleInterviewForm="ngForm">
+                <div *ngFor="let approvalEvent of approvalEvents; let user of users; let i = index;">
+                    <div *ngIf="approvalEvent.approvalEventOrder <= eventOrder">
+                        <label class="col-xs-12">{{ approvalEvent.approvalEventName }}
+                            <div class="inline-b lt-font" *ngIf="approvalEvent.approvalEventOrder != eventOrder">
+                                [ {{ 'CANDIDATE.TAKENBY' | translate }} {{ approvalEvent.userCompletedInterview.firstName }} {{ approvalEvent.userCompletedInterview.lastName }}  {{ 'CANDIDATE.TAKENON' | translate }} {{ approvalEvent.interviewConductedOn | date: 'dd/MM/yyyy at  hh:mm:ss a'}} ]
+                            </div>
+                        </label>
+                        <div *ngFor="let user of approvalEvent.users">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <label>
+                                    <input [disabled]="approvalEvent.approvalEventOrder != eventOrder" type="checkbox" [checked]="user.isChecked" [attr.value]="user.userId"
+                                        (change)="onChangeUsers(user, approvalEvent, $event.target.checked)" [name]="user.name"
+                                    />
+                                    <span class="sm-font lt-font" innerHTML="{{user.firstName}}"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div *ngIf="approvalEvent.approvalEventOrder == eventOrder" class="date-gap">
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <label>{{ 'CANDIDATE.DATE' | translate }}</label>
+                                <div class="inline-b lt-font">
+                                    <input type="text" placeholder="Datepicker" class="form-control" name="i" [minDate]="minDate" [(ngModel)]="date" bsDatepicker>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <label class="pull-left time-mid">{{ 'CANDIDATE.TIME' | translate }}</label>
+                                <timepicker  class="pull-left time-pic" [(ngModel)]="time" [showMeridian]="isMeridian" [mousewheel]="allowMouseWheel" name="i" [ngModelOptions]="{standalone: true}"></timepicker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <button id="bttn" type="submit" class="btn btn-primary blue-btn pull-right btn-gap">{{ 'CANDIDATE.SUBMIT' | translate }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

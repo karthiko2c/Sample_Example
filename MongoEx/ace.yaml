@@ -1,0 +1,92 @@
+# App Configuration
+name: subquip-backend
+app: subquip-backend
+namespace: subquip
+
+# Contact Information
+contact:
+  slack_channel: '#subquip-alert'
+
+# Helm chart configuration
+helm:
+  url: https://evry-ace.github.io/ace-app-chart/
+  repoName: evry-ace
+  chart: evry-ace/ace-app-chart
+  version: ^0.0.3
+  helmVersion: 2.8.2
+
+common:
+  deployment:
+    image:
+      dockerRegistry: evrydevopsprod.azurecr.io
+    livenessProbe:
+      path: /api/Health
+    readinessProbe:
+      path: /api/Health
+
+
+environments:
+  dev:
+    cluster: kubernetes.ace.dev
+    namespace: subquip-dev
+    overrides:
+      deployment:
+        volumeMounts:
+          - name: secret-volume
+            mountPath: /app/secrets
+      volumes: 
+        - name: secret-volume
+          secret:
+            secretName: subquip-secret
+            items:
+            - key: subquip-appsettings
+              path: appsettings.secrets.json
+      ingress:
+        host: subquip.dev.evry.site
+        path: /api
+      environment:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+  test:
+    cluster: kubernetes.ace.dev
+    namespace: subquip-test
+    overrides:
+      deployment:
+        volumeMounts:
+          - name: secret-volume
+            mountPath: /app/secrets
+      volumes: 
+        - name: secret-volume
+          secret:
+            secretName: subquip-secret 
+            items:
+            - key: subquip-appsettings
+              path: appsettings.secrets.json
+      ingress:
+        host: subquip.test.evry.site
+        path: /api
+      environment:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Test
+
+  prod:
+    cluster: kubernetes.ace.prod
+    namespace: subquip-prod
+    overrides:
+      deployment:
+        volumeMounts:
+          - name: secret-volume
+            mountPath: /app/secrets
+      volumes: 
+        - name: secret-volume
+          secret:
+            secretName: subquip-secret 
+            items:
+            - key: subquip-appsettings
+              path: appsettings.secrets.json
+      ingress:
+        host: subquip.com
+        path: /api
+      environment:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Production

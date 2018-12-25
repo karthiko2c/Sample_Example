@@ -1,0 +1,87 @@
+<div class="content-wrapper">
+    <app-approvalstrip *ngIf="isDataAvailable && loggedRole != 'Sr.HR'" [entityModel]="candidate" [approvalType]="approval"></app-approvalstrip>
+    <div class="panel panel-default no-radius">
+        <div class="panelheader panel-heading no-radius">{{ 'CANDIDATE.DETAILS' | translate }}</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <label>{{ 'CANDIDATE.OPENING' | translate }}</label>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <output name="opening">{{ candidateModel.openingTitle }}</output>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <label>{{ 'CANDIDATE.FIRSTNAME' | translate }}</label>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <output class="pull-left" name="firstName">{{ candidateModel.firstName }}</output>
+                            <div class="pull-right down-arrow" *ngIf="candidateModel.candidateId != null">
+                                <a title="{{ 'CANDIDATE.DOWNLOADRESUME' | translate }}" (click)="downloadCandidateResume(candidateModel.candidateDocument.uploadedDocument, candidateModel.candidateDocument.documentName)"
+                                    download="candidateModel.candidateDocument.documentName">
+                                    <i class="fa fa-download"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <label>{{ 'CANDIDATE.LASTNAME' | translate }}</label>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <output name="lastName">{{ candidateModel.lastName }}</output>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <label>{{ 'CANDIDATE.GENDER' | translate }}</label>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <output name="gender">{{ gender }}</output>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <label>{{ 'CANDIDATE.QUALIFICATION' | translate }}</label>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <output name="qualification">{{ candidateModel.qualificationName }}</output>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <label>{{ 'CANDIDATE.EXPERIENCE' | translate }}</label>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <output name="experienceYear">{{ candidateModel.experienceYear }}yr {{ candidateModel.experienceMonth }}mn</output>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <label>{{ 'CANDIDATE.WORKING' | translate }}</label>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <output name="organization">{{ candidateModel.organizationName }}</output>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-approvalhistory *ngIf="candidateModel.candidateId != null" [entityId]="candidateModel.candidateId"> </app-approvalhistory>
+</div>

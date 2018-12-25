@@ -1,0 +1,36 @@
+<!-- Strip secction -->
+
+<div class="row">
+  <div class="col-xs-12">
+    <div *ngIf="approvalUserTypes != null">
+      <ul #source *ngIf="approvalEvents.length > 0" class="nav nav-wizard">
+        <li *ngFor="let approvalEvent of approvalEvents"  [ngClass]="{status: approvalEvent.approvalEventOrder <= currentEventOrder, current: !isDisabled(approvalEvent.approvalEventId) && approvalEvent.approvalEventOrder == nextEventOrder}">
+          <a (click)="onApprovalEventClick(approvalEvent)" [ngClass]="{disabled: isDisabled(approvalEvent.approvalEventId)}"> {{ approvalEvent.approvalEventName }}</a>
+        </li>
+      </ul>
+
+      <!-- pop up section -->
+      <div [ngStyle]="{'left':  styleleft }" *ngIf="clicked && showPopup" #target class="top-info" id="pointer">
+        <div class="arrow-top">
+          <a href="javascript:void(0)" (click)="close()">
+            <i class="fa fa-close pull-right"></i>
+          </a>
+          <textarea class="full-input" name="comment" type="text" cols="5" rows="5" class="full-width tarea-inner" [(ngModel)]="comments"
+            #comment="ngModel" required></textarea>
+          <div *ngIf="comment.errors && (comment.dirty || submitted)" [hidden]="!comment.errors.required" class="validation-error">
+            {{ 'CANDIDATE.REQUIRED' | translate }}
+          </div>
+          <div *ngIf="currentEventClicked != null">
+            <div *ngIf="currentEventClicked.approvalActions.length > 0" class="two-side">
+              <div *ngFor="let approvalActions of currentEventClicked.approvalActions">
+                <a (click)="onApprovalActionClick(approvalActions)" class="blue-btn no-radius">{{approvalActions.approvalActionName }}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>

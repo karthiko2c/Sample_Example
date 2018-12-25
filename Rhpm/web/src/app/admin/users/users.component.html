@@ -1,0 +1,77 @@
+<div class="content-wrapper">
+    <h2>{{ 'USER.LIST' | translate }}</h2>
+
+    <mat-form-field>
+        <input matInput (keydown)="onKeydown($event)" (keyup)="clear()" class="inputText" placeholder="{{ 'USER.SEARCH' | translate }}"
+            name="listFilter" type="text" [(ngModel)]="listFilter" />
+    </mat-form-field>
+
+    <button [disabled]="!listFilter" type="submit" (click)="search()" class="search-btn">
+        <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    </button>
+
+    <button title="Add" class="btn btn-primary pull-right blue-btn" (click)="addUser()">Add</button>
+    <div class="clearfix"></div>
+    <div class="example-container mat-elevation-z8">
+        <table mat-table [dataSource]="users">
+
+            <ng-container matColumnDef="firstName">
+                <th mat-header-cell class="pointer" (click)="sort('FirstName')" *matHeaderCellDef>
+                    <span class="pull-left">{{ 'USER.FIRSTNAME' | translate}}</span>
+                    <span class="arrow-gap">
+                        <i class="fa" [ngClass]="{'fa-sort': searchAndSortModel.property !== 'FirstName', 
+                        'fa-sort-asc': (searchAndSortModel.property === 'FirstName' && !isDesc), 
+                        'fa-sort-desc': (searchAndSortModel.property === 'FirstName' && isDesc) }" aria-hidden="true">
+                        </i>
+                    </span>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="lastName">
+                <th mat-header-cell class="pointer" (click)="sort('LastName')" *matHeaderCellDef>
+                    <span class="pull-left">{{ 'USER.LASTNAME' | translate}}</span>
+                    <span class="arrow-gap">
+                        <i class="fa" [ngClass]="{'fa-sort': searchAndSortModel.property !== 'LastName', 
+                'fa-sort-asc': (searchAndSortModel.property === 'LastName' && !isDesc), 
+                'fa-sort-desc': (searchAndSortModel.property === 'LastName' && isDesc) }" aria-hidden="true">
+                        </i>
+                    </span>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+                <th mat-header-cell class="pointer" (click)="sort('Email')" *matHeaderCellDef>
+                    <span class="pull-left">{{ 'USER.EMAIL' | translate }}</span>
+                    <span class="arrow-gap">
+                        <i class="fa" [ngClass]="{'fa-sort': searchAndSortModel.property !== 'Email', 
+            'fa-sort-asc': (searchAndSortModel.property === 'Email' && !isDesc), 
+            'fa-sort-desc': (searchAndSortModel.property === 'Email' && isDesc) }" aria-hidden="true">
+                        </i>
+                    </span>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="role">
+                <th mat-header-cell *matHeaderCellDef>{{ 'USER.ROLE' | translate }}</th>
+                <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let row">
+                    <button title="Delete" class="btn btn-danger no-radius btn-pad" (click)="deleteUser(row)">{{ 'USER.DELETE' | translate }}</button>&nbsp;
+                    <button title="Edit" class="btn btn-primary blue-btn" (click)="updateUser(row)">{{ 'USER.UPDATE' | translate }}</button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+    <div class="table-slide">
+        <p>Slide to view table</p>
+    </div>
+</div>

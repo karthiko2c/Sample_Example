@@ -1,0 +1,103 @@
+<div class="content-wrapper">
+    <div class="panel panel-primary no-radius">
+        <div id="updatePanel" class="panel-heading  no-radius">
+            <div *ngIf="qualificationsModel.qualificationId===undefined; then create else update"></div>
+            <ng-template #create>Create Qualification</ng-template>
+            <ng-template #update>Update Qualification</ng-template>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <form (ngSubmit)="onSubmit(qualificationsForm)" #qualificationsForm="ngForm" class="form-horizontal">
+                    <div class="col-md-11 col-sm-11 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <label for="name"> {{ 'QUALIFICATIONS.NAME' | translate }}</label>
+                                    </div>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input autofocus type="text" class="full-input" id="qualifications" id="name" name="qualificationName" [(ngModel)]="qualificationsModel.name"
+                                            required #qualificationName="ngModel" minlength="3" maxlength="20" (keyup)="checkQualificationExits()">
+                                        <div *ngIf="isQualificationExists" id="nameExists" class="text">{{ 'QUALIFICATIONS.MESSAGE' | translate }}</div>
+                                        <div *ngIf="qualificationName.errors && (qualificationName.dirty || submitted)" [hidden]="!qualificationName.errors.required"
+                                            class="validation-error">
+                                            {{ 'QUALIFICATIONS.REQUIRED' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <label for="description">{{ 'QUALIFICATIONS.DESCRIPTION' | translate }} </label>
+                                    </div>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input type="text" class="full-input" id="description" name="description" [(ngModel)]="qualificationsModel.description" required
+                                            #description="ngModel">
+                                        <div *ngIf="description.errors && (description.dirty || submitted)" [hidden]="!description.errors.required" class="validation-error">
+                                            {{ 'USER.REQUIRED' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1 col-sm-1 col-xs-12">
+                        <button type="submit" id="btnSave" class="btn btn-primary blue-btn full-width">{{ 'QUALIFICATIONS.SAVE' | translate }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <h3>{{ 'QUALIFICATION_DETAILS.QUALIFICATION_DETAILS' | translate }}</h3>
+    <input (keydown)="onKeydown($event)" (keyup)="clear()" class="search search-skill search-qualification" placeholder="{{ 'QUALIFICATIONS.SEARCH' | translate }}" name="listFilter"
+        type="text" [(ngModel)]="listFilter"/>
+    <button [disabled]="!listFilter" type="submit" (click)="search()" class="btn">GO</button>
+
+    <div class="table-responsive-top">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th width=400 class="pointer" (click)="sort('Name')">
+                            <span class="pull-left"> {{ 'QUALIFICATION_DETAILS.QUALIFICATIONS' | translate }}</span>
+                            <span class="arrow-gap">
+                                <i class="fa" [ngClass]="{'fa-sort': searchAndSortModel.property !== 'Name', 
+                                'fa-sort-asc': (searchAndSortModel.property === 'Name' && !isDesc), 
+                                'fa-sort-desc': (searchAndSortModel.property === 'Name' && isDesc) }" aria-hidden="true">
+                                </i>
+                            </span>
+                        </th>
+                        <th width=400> {{ 'QUALIFICATION_DETAILS.DESCRIPTION' | translate }}</th>
+                        <th width=400> {{ 'QUALIFICATION_DETAILS.ACTION' | translate }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="qualifications.length === 0; else rowTemplate">
+                        <td></td>
+                        <td align="center"> {{ 'QUALIFICATIONS.NORECORD' | translate }} </td>
+                        <td></td>
+                    </tr>
+
+                    <ng-template #rowTemplate>
+                        <tr *ngFor="let qualification of qualifications; let  i = index">
+                            <td>{{qualification.name}}</td>
+                            <td>{{qualification.description}}</td>
+                            <td>
+                                <a class="btn btn-primary  blue-btn" (click)="editQualifications(qualification.qualificationId)">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </a>
+                                <a class="btn btn-danger no-radius btn-pad" (click)="deleteQualifications(qualification,i)">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="table-slide">
+        <p>Slide to view table</p>
+    </div>
+</div>

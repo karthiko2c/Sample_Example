@@ -1,0 +1,64 @@
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card-main gredient-one">
+                <div class="pull-left">
+                    <i class="fa fa-envelope-open" aria-hidden="true"></i>
+                </div>
+                <div class="pull-right">
+                    <h4>{{ dashboardModel.totalOpenOpenings }}</h4>
+                    <p>{{ 'DASHBOARD.OPEN' | translate }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card-main gredient-two">
+                <div class="pull-left">
+                    <i class="fa fa-window-close" aria-hidden="true"></i>
+                </div>
+                <div class="pull-right">
+                    <h4>{{ dashboardModel.totalCloseOpenings }}</h4>
+                    <p>{{ 'DASHBOARD.CLOSE' | translate }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card-main gredient-three">
+                <div class="pull-left">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                </div>
+                <div class="pull-right">
+                    <h4>{{ dashboardModel.totalCandidateHired }}</h4>
+                    <p>{{ 'DASHBOARD.HIRED' | translate }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card-main gredient-three">
+                <div class="pull-left">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                </div>
+                <div class="pull-right">
+                    <h4>{{ dashboardModel.totalCandidateInterviewed }}</h4>
+                    <p>{{ 'DASHBOARD.CANDIDATEINTERVIEWED' | translate }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+   <nav class="data-nav">
+       <ul>
+           <li [ngClass]="{'selected': selectedType === showType.All}"><a (click)="showData(showType.All)" class="no-right-bdr">{{ 'DASHBOARD.ALL' | translate }}</a></li>
+           <li [ngClass]="{'selected': selectedType === showType.Gender}"><a (click)="showData(showType.Gender)" class="no-left-bdr">{{ 'DASHBOARD.GENDER' | translate }}</a></li>
+       </ul>
+   </nav>  
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="g-map text-center">
+                <app-hiringtrendchart *ngIf="chartViewModel.series != undefined" [chartViewModel]="chartViewModel"></app-hiringtrendchart>
+                <!-- <img src="../assets/images/pie-chart.jpg" alt="Evry" title="Evry" style="max-width:100%;"> -->
+            </div>
+        </div>
+    </div>
+</div>
